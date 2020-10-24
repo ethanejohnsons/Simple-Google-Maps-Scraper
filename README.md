@@ -1,4 +1,4 @@
-# Simple-Googles-Maps-Scraper
+# Simple Google Maps Scraper
 This project is a simple google maps scraper that can be used for compiling a list of specific types of locations.
 The example `searches.txt` file contains a list of searches for child-centered businesses in the Fargo-Moorhead area.
 
