@@ -130,3 +130,5 @@ dmypy.json
 
 # intellij
 .idea/
+*.json
+geckodriver.log

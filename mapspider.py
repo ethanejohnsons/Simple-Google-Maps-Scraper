@@ -1,23 +1,18 @@
 import scrapy
 import time
+import reader
 from selenium import webdriver
 
 """
 Author: Ethan Johnson
-Last Modified: October 11th, 2020
-File Name: spider.py
+Last Modified: October 24th, 2020
+File Name: mapspider.py
 """
 
 
-class MapsSpider(scrapy.Spider):
-    name = 'maps'
-    start_urls = [
-        'https://google.com/maps/search/child+fargo+moorhead',
-        'https://google.com/maps/search/childcare+fargo+moorhead',
-        'https://google.com/maps/search/daycare+fargo+moorhead',
-        'https://google.com/maps/search/early+education+fargo+moorhead',
-        'https://google.com/maps/search/early+childhood+fargo+moorhead',
-    ]
+class MapSpider(scrapy.Spider):
+    name = 'mapspider'
+    start_urls = reader.read_from_file("searches.txt")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -26,7 +21,7 @@ class MapsSpider(scrapy.Spider):
         self.count = 0
         self.MAX_RESULTS = 250
 
-    def parse(self, response):
+    def parse(self, response, **kwargs):
         self.driver.get(response.url)
 
         while True:
@@ -35,7 +30,7 @@ class MapsSpider(scrapy.Spider):
             results = self.driver.find_elements_by_xpath('//div[@class="section-result"]')
             for result in results:
                 self.count += 1
-                if (self.count > self.MAX_RESULTS):
+                if self.count > self.MAX_RESULTS:
                     return
 
                 name = result.find_element_by_xpath('div/div/div/div/div/h3[@class="section-result-title"]/span').text
