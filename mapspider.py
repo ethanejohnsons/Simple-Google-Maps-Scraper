@@ -83,16 +83,11 @@ class MapSpider(scrapy.Spider):
             # Get the address
             time.sleep(1)
             result.click()
-            time.sleep(4)
-            address = self.driver.find_element_by_xpath('//button[contains(@aria-label, "Address:")]/div/div/div[contains(@class, "gm2-body-2")]').text
-            print("CLICK================================================")
-            print("CLICK================================================")
-            print("CLICK================================================")
-            print("CLICK================================================")
-            print("CLICK================================================")
-            print("CLICK================================================")
-            print("CLICK================================================")
-            print("CLICK================================================")
+            time.sleep(5)
+            try:
+                address = self.driver.find_element_by_xpath('//button[contains(@aria-label, "Address:")]/div/div/div[contains(@class, "gm2-body-2")]').text
+            except:
+                return
             time.sleep(1)
             self.driver.find_element_by_xpath('//span[contains(text(), "Back to results")]').click()
             # self.driver.back()
