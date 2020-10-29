@@ -10,7 +10,7 @@ conda install -c conda-forge scrapy
 conda install -c conda-forge geckodriver
 pip install selenium
 ```
-You must also have Firefox installed.
+You must also have Google Chrome installed with the [ChromeDriver](https://chromedriver.chromium.org/downloads) addon.
 
 ## Run
 To run the spider, type `scrapy runspider mapspider.py -o output.json`.
